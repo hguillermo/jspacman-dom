@@ -49,9 +49,9 @@ Database.prototype.LoadHighScore =
                     var result = 0;
                     if ( oXHR.status == 200 )
                         result = oXHR.responseText;
-                    
+
                     result = IsNumeric( result ) ? result: 0;
-                    
+
                     // Set the high score.
                     game.SetHighScore( result );
                 }
