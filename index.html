@@ -1,0 +1,213 @@
+<html>
+<head>
+    <title>JavaScript Pacman by Harry Guillermo</title>
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+    
+    <meta name="author" content="Harry Guillermo Mendoza">
+    <meta name="copyright" content="Harry Guillermo Mendoza 2008">
+    <meta name="keywords" content="Java Script Pacman,javascript pacman,Learn Videogames,Pacman,The best pacman in javascript,tutorial write videogames,arcade games">
+    <meta name="description" content="Play the best JavaScript Pacman">
+    
+    <script type="text/javascript" src="lib/soundmanager/soundmanager2-nodebug-jsmin.js"></script>
+    <script type="text/javascript" src="pacman/javascript/loader.js"></script>
+    <script type="text/javascript" src="pacman/javascript/browser.js"></script>
+    <script type="text/javascript" src="pacman/javascript/score.js"></script>
+    <script type="text/javascript" src="pacman/javascript/credit.js"></script>
+    <script type="text/javascript" src="pacman/javascript/message.js"></script>
+    <script type="text/javascript" src="pacman/javascript/lifes.js"></script>
+    <script type="text/javascript" src="pacman/javascript/fruits.js"></script>
+    <script type="text/javascript" src="pacman/javascript/input.js"></script>
+    <script type="text/javascript" src="pacman/javascript/sound.js"></script>
+    <script type="text/javascript" src="pacman/javascript/effect.js"></script>
+    <script type="text/javascript" src="pacman/javascript/maze.js"></script>
+    <script type="text/javascript" src="pacman/javascript/food.js"></script>
+    <script type="text/javascript" src="pacman/javascript/ghost.js"></script>
+    <script type="text/javascript" src="pacman/javascript/pacman.js"></script>
+    <script type="text/javascript" src="pacman/javascript/game.js"></script>
+    <script type="text/javascript" src="pacman/javascript/database.js"></script>
+    <script type="text/javascript" src="ajax/zXml/zxml.js"></script>
+    <script type="text/javascript" src="lib/utils/utils.numbers.js"></script>
+
+    
+    
+    <script type="text/javascript">
+    //*******************************************************************************
+    // Author: Harry Guillermo Mendoza
+    // Email: hguillermo@yahoo.com
+    // All copyrights are reserved
+    // Date: 08/22/2008
+    // Web site: http://www.harryguillermo.com
+    //*******************************************************************************
+    //
+    //
+    //
+
+    // Iniitialize browser detection
+    InitBrowser();
+    if ( browser.IsNetscape() )
+    {
+        // Initialize the game and load the objects.
+        game = new Game();
+        game.Load();
+    }
+     
+    var totalImages;    
+    function LoadGame()
+    {
+        // Initialize the game and load the objects.
+        game = new Game();
+        game.Load();
+        
+        // Init the database component.
+        InitDatabase();
+        
+        // Set the loader values
+        totalImages = effectManager.GetTotalImages();
+        loader.SetMaxValue( totalImages );
+
+        // Load all the images in the cache
+        LoadImages();
+    }
+
+    //
+    //
+    //
+    function LoadImages()
+    {
+        var totalImagesLoaded   = effectManager.GetTotalImagesLoaded();
+        //var totalImages         = effectManager.GetTotalImages();
+        
+        // Update the loader values
+        loader.Update( totalImagesLoaded );
+        
+        if ( /*effectManager.AllImagesAreLoaded()*/ totalImagesLoaded >= totalImages )
+        {
+            loader.Update( totalImages );
+            LoadingSounds();
+            return;
+        }
+        
+        // Call this method after 2 second
+        setTimeout( 'LoadImages();', 800 );
+    }
+    
+    //
+    //
+    //
+    function LoadingSounds()
+    {
+        var loading = document.getElementById('loading');
+
+        // Verify is the sounds are loaded
+        var isEveryThingLoaded = false;
+        try
+        {
+            soundPlayer.Play('startStage');     soundPlayer.Stop('startStage');
+            soundPlayer.Play('eatBiscuit');     soundPlayer.Stop('eatBiscuit');
+            soundPlayer.Play('bigDotEaten');    soundPlayer.Stop('bigDotEaten');
+            soundPlayer.Play('eatBigBiscuit');  soundPlayer.Stop('eatBigBiscuit');
+            soundPlayer.Play('pacmanKilled');   soundPlayer.Stop('pacmanKilled');
+            soundPlayer.Play('ghostEaten');     soundPlayer.Stop('ghostEaten');
+            soundPlayer.Play('extraPacman');    soundPlayer.Stop('extraPacman');
+            
+            isEveryThingLoaded = true;
+        }
+        catch ( e )
+        {
+            isEveryThingLoaded = false;
+        }
+
+        if ( isEveryThingLoaded )
+        {
+            //var loading = document.getElementById('loading');
+            loading.style.visibility = 'hidden';
+
+            // Hide the loader
+            loader.Hide();
+            effectManager.Run( 'gameLoading' );
+        }
+        else
+        {
+            setTimeout( 'LoadingSounds()', 2000 );
+        }
+    }
+   
+    </script>
+</head>
+
+<body onload="javascript: LoadGame();">
+    <table border="0" cellSpacing="0" cellPadding="0">
+        <tr>
+            <td>
+                <img src="pacman/images/blank.gif" width="50" height="0" border="0" alt=""/>
+            </td>
+            <td valign="top">
+                <table border="6" cellpadding="0" cellspacing="0" style="border-color:Yellow;">
+                    <tr>
+                        <td style="width: 464px; height: 606px; border-color:Yellow; vertical-align:top;">
+                            <div id="content" style="position: relative; top: 0px; left: 0px;">
+                                <div id="divLoading" style="position: absolute; top: 0px; left: 0px; z-index: 998; width: 464px; height: 604px; background-color: Transparent;">
+                                    <img id="loading" src="pacman/common/loading.jpg" style="position: absolute; top: 0;left: 0; z-index: 950;" />
+                                </div>
+                                <div id="divLoader" style="position: absolute; top: 356px; left: 64px; z-index: 999; width: 360px; height: 30px; background-color: Transparent;">
+                                    <img id="loaderBorder" src="pacman/common/loaderborder.jpg" style="position: absolute; top: 0px;left: 0px; z-index: 950;" border="0px"/>
+                                    <img id="loaderPercentage" src="pacman/common/loaderpercentage.jpg" style="position: absolute; top: 2px;left: 2px; z-index: 950;" width="0px" height="23px" border="0px"/>
+                                </div>
+                                <div id="divFood" style="position: absolute; top: 0px; left: 0px; z-index: 910; width: 32px;height: 32px; background-color: Transparent;">
+                                </div>
+                                <div id="divScore1" style="position: absolute; top: 28px; left: 16px; z-index: 910;width: 120px; height: 16px; background-color: Transparent;">
+                                </div>
+                                <div id="divScore2" style="position: absolute; top: 28px; left: 328px; z-index: 910;width: 120px; height: 16px; background-color: Transparent;">
+                                </div>
+                                <div id="divHighScore" style="position: absolute; top: 28px; left: 172px; z-index: 910;width: 120px; height: 16px; background-color: Transparent;">
+                                </div>
+                                <div id="divLifes1" style="position: absolute; top: 568px; left: 32px; z-index: 910;width: 160px; height: 32px; background-color: Transparent;">
+                                </div>
+                                <div id="divLifes2" style="position: absolute; top: 568px; left: 32px; z-index: 910;width: 160px; height: 32px; background-color: blue; visibility: hidden;">
+                                </div>
+                                <div id="divFruits" style="position: absolute; top: 568px; left: 400px; z-index: 910;width: 32px; height: 32px; background-color: Transparent;">
+                                </div>
+                                <div id="divMessages" style="position: absolute; top: 0px; left: 0px; z-index: 910;width: 464px; height: 604px; background-color: Transparent;">
+                                </div>
+                                <div id="divInputScreen" style="position: absolute; top: 0px; left: 0px; z-index: 910;width: 464px; height: 604px; background-color: Transparent;">
+                                </div>
+                                <div id="divPersecution" style="position: absolute; top: 0px; left: 0px; z-index: 910;width: 464px; height: 604px; background-color: Transparent;">
+                                </div>
+                                <div id="divCredits" style="position: absolute; top: 578px; left: 142px; z-index: 920;width: 120px; height: 17px; background-color: Transparent;">
+                                </div>
+                                <table cellpadding="0" cellspacing="0" border="0" style="top: 0; left: 0; position: absolute;">
+                                    <tr>
+                                        <td>
+                                            <img src="pacman/common/score.jpg" border="0" height="56" /><br>
+                                            <img src="pacman/common/maze9.jpg" border="0" height="512" /><br>
+                                            <img src="pacman/common/livesfruit.jpg" border="0" height="36" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <img src="pacman/images/blank.gif" width="20" height="0" border="0" alt=""/>
+            </td>
+            <td style="vertical-align:top;">
+                <!-- <p><span id="lblHits" class="Title16Blue">Hits: <?php echo $totalhits; ?></span></p> -->
+                <span class="Title16Bold">Instructions:</span>
+                <br/><br/>
+                <span class="Normal12Black">1. Press <span class="Normal12RedBold">&quot;Q&quot;</span> to add credits:</span><br />
+                <img src="pacman/common/pressQ.jpg" /><br />
+                <br />
+                <span class="Normal12Black">2. Press <span class="Normal12RedBold">&quot;P&quot;</span> to play:</span><br />
+                <img src="pacman/common/pressP.jpg" /><br />
+                <br />
+                <span class="Normal12Black">3. Use the <span class="Normal12RedBold">arrow keys</span> to move:</span><br />
+                <img align="middle" src="pacman/common/arrows.jpg" /><br />
+                <br/>
+                <!-- <a class="Blue14Bold" href="../../">Go Home</a><br/> -->
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

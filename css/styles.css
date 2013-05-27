@@ -1,0 +1,174 @@
+﻿.Title24Bold
+{
+	font-family: Verdana;
+	font-size:24pt;
+	font-weight:bold;
+	color: Black;
+}	
+
+.Title18Bold
+{
+	font-family: Verdana;
+	font-size:18pt;
+	font-weight:bold;
+	color: Black;
+}	
+
+.Title16Bold
+{
+	font-family: Verdana;
+	font-size:16pt;
+	font-weight:bold;
+	color: Black;
+}	
+
+.Title16Blue
+{
+	font-family: Verdana;
+	font-size:16pt;
+	font-weight:normal;
+	color: Blue;
+}	
+
+.Title16BoldBlue
+{
+	font-family: Verdana;
+	font-size:16pt;
+	font-weight:bold;
+	color: Blue;
+}	
+
+.Normal10Black
+{
+	font-family: Verdana;
+	font-size:10pt;
+	color: Black;
+}
+.Normal12Black
+{
+	font-family: Verdana;
+	font-size:12pt;
+	color: Black;
+}
+
+.Normal12Red
+{
+	font-family: Verdana;
+	font-size:12pt;
+	color: Red;
+}
+.Normal12RedBold
+{
+	font-family: Verdana;
+	font-size:12pt;
+	font-weight:bold;
+	color: Red;
+}
+
+.Normal10BlackBold
+{
+	font-family: Verdana;
+	font-size:10pt;
+	font-weight:bold;
+	color: Black;
+}
+
+.Normal12BlackBold
+{
+	font-family: Verdana;
+	font-size:12pt;
+	font-weight:bold;
+	color: Black;
+}
+
+.Normal10
+{
+	font-family: Verdana;
+	font-size:10pt;
+	color: gray;
+}
+
+.Normal12
+{
+	font-family: Verdana;
+	font-size:12pt;
+	color: gray;
+}
+
+.Normal12Bold
+{
+	font-family: Verdana;
+	font-size:12pt;
+	font-weight:bold;
+	color: gray;
+}
+
+.Blue12Bold
+{
+	font-family: Verdana;
+	font-size:12pt;
+	font-weight:bold;
+	color: Blue;
+}
+
+.Blue12
+{
+	font-family: Verdana;
+	font-size:12pt;
+	color: Blue;
+}
+
+.Blue10Bold
+{
+	font-family: Verdana;
+	font-size:10pt;
+	font-weight:bold;
+	color: Blue;
+}
+
+.Blue14Bold
+{
+	font-family: Verdana;
+	font-size:14pt;
+	font-weight:bold;
+	color: Blue;
+}
+
+
+.Red10Bold
+{
+	font-family: Verdana;
+	font-size:10pt;
+	font-weight:bold;
+	color: red;
+}
+.Red8Bold
+{
+	font-family: Verdana;
+	font-size:8pt;
+	font-weight:bold;
+	color: red;
+}
+.Red6Bold
+{
+	font-family: Verdana;
+	font-size:6pt;
+	font-weight:bold;
+	color: red;
+}
+
+.Red10
+{
+	font-family: Verdana;
+	font-size : 10pt;
+	font-weight:normal;
+	color: red;
+}
+
+.Red10Bold
+{
+	font-family: Verdana;
+	font-size : 10pt;
+	font-weight:bold;
+	color: red;
+}
